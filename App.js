@@ -34,6 +34,7 @@ export default function App() {
 					<Stack.Screen
 						name="ExpensesOverview"
 						component={ExpensesOverview}
+						options={{ headerShown: false }}
 					></Stack.Screen>
 					<Stack.Screen
 						name="ManageExpense"
