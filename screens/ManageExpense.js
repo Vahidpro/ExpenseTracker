@@ -17,9 +17,15 @@ function ManageExpense({ route, navigation }) {
 		);
 	});
 
-	function deleteExpenseHandler() {}
-	function cancelHandler() {}
-	function confirmHandler() {}
+	function deleteExpenseHandler() {
+		navigation.goBack();
+	}
+	function cancelHandler() {
+		navigation.goBack();
+	}
+	function confirmHandler() {
+		navigation.goBack();
+	}
 	return (
 		<View style={styles.container}>
 			<View style={styles.buttons}>
