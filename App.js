@@ -6,6 +6,8 @@ import ManageExpense from "./screens/ManageExpense";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RecentExpenses from "./screens/RecentExpenses";
 import AllExpenses from "./screens/AllExpenses";
+import { GlobalStyles } from "./constants/styles";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function App() {
 	const Stack = createStackNavigator();
@@ -13,14 +15,35 @@ export default function App() {
 
 	function ExpensesOverview() {
 		return (
-			<ButtomTabs.Navigator>
+			<ButtomTabs.Navigator
+				screenOptions={{
+					headerStyle: {
+						backgroundColor: GlobalStyles.colors.primary500,
+					},
+					headerTintColor: "white",
+					tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+					tabBarActiveTintColor: GlobalStyles.colors.accent500,
+				}}
+			>
 				<ButtomTabs.Screen
 					name="RecentExpenses"
 					component={RecentExpenses}
+					options={{
+						title: "Recent Expenses",
+						tabBarIcon: ({ color, size }) => (
+							<Ionicons name="hourglass" color={color} size={size}></Ionicons>
+						),
+					}}
 				></ButtomTabs.Screen>
 				<ButtomTabs.Screen
 					name="AllExpenses"
 					component={AllExpenses}
+					options={{
+						title: "All Expenses",
+						tabBarIcon: ({ color, size }) => (
+							<Ionicons name="calendar" color={color} size={size}></Ionicons>
+						),
+					}}
 				></ButtomTabs.Screen>
 			</ButtomTabs.Navigator>
 		);
@@ -42,7 +65,6 @@ export default function App() {
 					></Stack.Screen>
 				</Stack.Navigator>
 			</NavigationContainer>
-			<Text>hi</Text>
 		</>
 	);
 }
@@ -55,3 +77,4 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 });
+<></>;
