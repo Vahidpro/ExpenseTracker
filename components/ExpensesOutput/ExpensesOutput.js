@@ -8,25 +8,25 @@ const Dummy_data = [
 		id: "e1",
 		description: "Shoes",
 		amount: 59.32,
-		data: new Date(20221216),
+		date: new Date(2022 - 12 - 16),
 	},
 	{
 		id: "e2",
 		description: "Jacket",
 		amount: 32.48,
-		data: new Date(20221224),
+		date: new Date(2022 - 12 - 24),
 	},
 	{
 		id: "e3",
 		description: "Food",
 		amount: 68.29,
-		data: new Date(20230112),
+		date: new Date(2023 - 1 - 12),
 	},
 	{
 		id: "e4",
 		description: "Coffee",
 		amount: 74.32,
-		data: new Date(20230123),
+		date: new Date(2023 - 1 - 23),
 	},
 ];
 
@@ -46,7 +46,9 @@ export default ExpensesOutput;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		padding: 24,
+		paddingHorizontal: 24,
+		paddingTop: 24,
+		paddingBottom: 0,
 		backgroundColor: GlobalStyles.colors.primary700,
 	},
 });

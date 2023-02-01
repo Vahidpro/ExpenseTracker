@@ -1,7 +1,15 @@
 import { StyleSheet, FlatList, Text } from "react-native";
+import ExpenseItem from "./ExpensesOutput/ExpenseItem";
 
 const renderExpensesItem = (itemData) => {
-	return <Text>{itemData.item.description}</Text>;
+	return (
+		<ExpenseItem
+			// description={itemData.item.description}
+			// data={itemData.item.data}
+			// amount={itemData.item.amount}
+			{...itemData.item}
+		></ExpenseItem>
+	);
 };
 
 function ExpensesList({ expenses }) {
