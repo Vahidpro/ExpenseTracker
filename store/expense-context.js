@@ -26,6 +26,30 @@ const Dummy_data = [
 		amount: 74.32,
 		date: new Date("2023-01-23"),
 	},
+	{
+		id: "e5",
+		description: "pants",
+		amount: 59.32,
+		date: new Date("2023-01-29"),
+	},
+	{
+		id: "e6",
+		description: "Pillow",
+		amount: 32.48,
+		date: new Date("2023-01-30"),
+	},
+	{
+		id: "e7",
+		description: "Chair",
+		amount: 68.29,
+		date: new Date("2023-01-30"),
+	},
+	{
+		id: "e8",
+		description: "TV",
+		amount: 74.32,
+		date: new Date("2023-01-27"),
+	},
 ];
 
 export const ExpensesContext = createContext({
