@@ -5,7 +5,10 @@ import ExpensesList from "../ExpensesList";
 function ExpensesOutput({ expenses, expensesPeriod }) {
 	return (
 		<View style={styles.container}>
-			<ExpensesSummary periodName={expensesPeriod}></ExpensesSummary>
+			<ExpensesSummary
+				expenses={expenses}
+				periodName={expensesPeriod}
+			></ExpensesSummary>
 			<ExpensesList></ExpensesList>
 		</View>
 	);
