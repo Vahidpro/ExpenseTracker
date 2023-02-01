@@ -1,6 +1,4 @@
 import { createContext, useReducer } from "react";
-import { ActionSheetIOS } from "react-native";
-
 const Dummy_data = [
 	{
 		id: "e1",
@@ -86,7 +84,7 @@ function ExpensesContextProvider({ children }) {
 	function addExpense(expenseData) {
 		dispatch({ type: "ADD", payload: expenseData });
 	}
-	function updateExpense(id) {
+	function updateExpense(id, expenseData) {
 		dispatch({ type: "UPDATE", payload: { id: id, data: expenseData } });
 	}
 	function deleteExpense(id) {
@@ -97,7 +95,7 @@ function ExpensesContextProvider({ children }) {
 		expenses: expensesState,
 		addExpense: addExpense,
 		updateExpense: updateExpense,
-		deletexpense: deleteExpense,
+		deleteExpense: deleteExpense,
 	};
 
 	return (
