@@ -2,15 +2,21 @@ import { StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { GlobalStyles } from "../../constants/styles";
 
-function Input({ lable, textInputConfig, style }) {
+function Input({ lable, textInputConfig, style, invalid }) {
 	const inputStyles = [styles.input];
 	if (textInputConfig && textInputConfig.multiline) {
 		inputStyles.push(styles.inputMultiline);
 	}
 
+	if (invalid) {
+		inputStyles.push(styles.invalidInput);
+	}
+
 	return (
 		<View style={[styles.inputContainer, style]}>
-			<Text style={styles.label}>{lable}</Text>
+			<Text style={[styles.label, invalid && styles.invalidLabel]}>
+				{lable}
+			</Text>
 			<TextInput style={inputStyles} {...textInputConfig}></TextInput>
 		</View>
 	);
