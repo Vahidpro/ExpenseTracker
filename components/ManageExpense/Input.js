@@ -2,14 +2,14 @@ import { StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { GlobalStyles } from "../../constants/styles";
 
-function Input({ lable, textInputConfig }) {
+function Input({ lable, textInputConfig, style }) {
 	const inputStyles = [styles.input];
 	if (textInputConfig && textInputConfig.multiline) {
 		inputStyles.push(styles.inputMultiline);
 	}
 
 	return (
-		<View style={styles.inputContainer}>
+		<View style={[styles.inputContainer, style]}>
 			<Text style={styles.label}>{lable}</Text>
 			<TextInput style={inputStyles} {...textInputConfig}></TextInput>
 		</View>
