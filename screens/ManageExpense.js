@@ -27,33 +27,22 @@ function ManageExpense({ route, navigation }) {
 	function cancelHandler() {
 		navigation.goBack();
 	}
-	function confirmHandler() {
+	function confirmHandler(expenseData) {
 		if (isEditing) {
-			expenseCtx.updateExpense(editedExpenseId, {
-				description: "Test!!!",
-				amount: 29.32,
-				date: new Date("2023-02-01"),
-			});
+			expenseCtx.updateExpense(editedExpenseId, expenseData);
 		} else {
-			expenseCtx.addExpense({
-				description: "Test.",
-				amount: 12.32,
-				date: new Date("2023-02-01"),
-			});
+			expenseCtx.addExpense(expenseData);
 		}
 		navigation.goBack();
 	}
 	return (
 		<View style={styles.container}>
-			<ExpenseForm></ExpenseForm>
-			<View style={styles.buttons}>
-				<Button style={styles.button} mode="flat" onPress={cancelHandler}>
-					Cancel
-				</Button>
-				<Button style={styles.button} onPress={confirmHandler}>
-					{isEditing ? "Update" : "Add"}
-				</Button>
-			</View>
+			<ExpenseForm
+				onCancel={cancelHandler}
+				onSubmit={confirmHandler}
+				submitButtonLabel={isEditing ? "Update" : "Add"}
+			></ExpenseForm>
+
 			<View style={styles.deleteContainer}>
 				<IconButton
 					icon="trash"
@@ -73,15 +62,7 @@ const styles = StyleSheet.create({
 		padding: 24,
 		backgroundColor: GlobalStyles.colors.primary800,
 	},
-	buttons: {
-		flexDirection: "row",
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	button: {
-		minWidth: 120,
-		marginHorizontal: 8,
-	},
+
 	deleteContainer: {
 		marginTop: 16,
 		paddingTop: 8,
