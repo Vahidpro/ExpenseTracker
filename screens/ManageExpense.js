@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 import IconButton from "../components/UI/IconButton";
@@ -6,8 +6,10 @@ import Button from "../components/UI/Button";
 import { ExpensesContext } from "../store/expense-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 import { deleteExpense, storeExpense, updateExpense } from "../util/http";
+import LoadingOverlay from "../components/UI/LoadingOverlay";
 
 function ManageExpense({ route, navigation }) {
+	const [isSubmitting, setIsSubmitting] = useState(false);
 	const expenseCtx = useContext(ExpensesContext);
 	const editedExpenseId = route.params?.expenseId;
 	const isEditing = !!editedExpenseId;
@@ -22,7 +24,9 @@ function ManageExpense({ route, navigation }) {
 	});
 
 	async function deleteExpenseHandler() {
+		setIsSubmitting(true);
 		expenseCtx.deleteExpense(editedExpenseId);
+		setIsSubmitting(true);
 		navigation.goBack();
 		await deleteExpense(editedExpenseId);
 	}
@@ -30,6 +34,7 @@ function ManageExpense({ route, navigation }) {
 		navigation.goBack();
 	}
 	async function confirmHandler(expenseData) {
+		setIsSubmitting(true);
 		if (isEditing) {
 			expenseCtx.updateExpense(editedExpenseId, expenseData);
 			await updateExpense(editedExpenseId, expenseData);
@@ -38,6 +43,10 @@ function ManageExpense({ route, navigation }) {
 			expenseCtx.addExpense({ expenseData, id: id });
 		}
 		navigation.goBack();
+	}
+
+	if (isSubmitting) {
+		return <LoadingOverlay></LoadingOverlay>;
 	}
 	return (
 		<View style={styles.container}>
